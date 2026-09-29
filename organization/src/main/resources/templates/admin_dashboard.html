@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Admin Dashboard</title>
+</head>
+<body>
+
+<div class="container mt-5">
+
+    <h2>Admin Dashboard</h2>
+
+    <div class="card mt-4 shadow-sm">
+        <div class="card-body">
+
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4>Subscribers</h4>
+
+                <span class="badge badge-dark"
+                      th:text="${#lists.size(subscribers)}">
+                    0
+                </span>
+            </div>
+
+            <table class="table table-hover">
+
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr th:each="subscriber : ${subscribers}">
+                        <td th:text="${subscriber.connect_id}"></td>
+                        <td th:text="${subscriber.email}"></td>
+                    </tr>
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
