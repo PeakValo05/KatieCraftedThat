@@ -58,7 +58,9 @@ public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
 
         )
-        .logout(logout -> logout.permitAll());
+        .logout(logout -> logout
+            .logoutSuccessUrl("/login?logout")
+            .permitAll());
 
     return http.build();
 }

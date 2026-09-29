@@ -19,16 +19,15 @@ public class SubscribeController {
  
 
     @PostMapping("/subscribe")
-    public String subscribe(@RequestParam("email") String email) {
-        // Handle the subscription logic here (e.g., save the email to the database)
-        ConnectModel connectModel = new ConnectModel();
+    public String subscribe(@RequestParam(value = "email", required = false) String email) {
+        if (email == null || email.isBlank()) {
+            return "redirect:/home?connectError";
+        }
 
-        connectModel.setEmail(email);
-        
+        ConnectModel connectModel = new ConnectModel();
+        connectModel.setEmail(email.trim());
         connectRepository.save(connectModel);
 
-        System.out.println("Subscribed email: " + email);
-
-        return "redirect:/home"; // Redirect back to the home page after subscribing
+        return "redirect:/home?connected";
     }
 }
