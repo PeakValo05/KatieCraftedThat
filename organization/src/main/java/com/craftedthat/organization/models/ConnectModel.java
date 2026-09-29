@@ -14,6 +14,8 @@ public class ConnectModel {
 
     private String email;
 
+    private String role;
+
     public Long getConnect_id() {
         return connect_id;
     }
@@ -28,5 +30,12 @@ public class ConnectModel {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }
