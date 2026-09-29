@@ -34,14 +34,14 @@
             <button type="submit" class="btn btn-primary">Search</button>
             <input type="text" name="query" class="form-control d-inline-block" style="width: 200px; margin: 10px;" placeholder="Search...">
         </form>
-        <a href="#" class="btn">
+        <a href="#" class="btn border-0">
             <img th:src="@{/images/cart.svg}" alt="Cart Icon" style="height: 25px; margin-right: 5px;">
         </a>
 
+        <!-- Logout Form -->
         <form th:action="@{/logout}" method="post" class="d-inline-block">
-            <button type="submit" class="btn">
-            <img th:src="@{/images/logout.svg}" alt="Logout Icon" style="height: 25px; margin-right: 5px; 
-            filter: invert(16%) sepia(99%) saturate(6500%) hue-rotate(359deg) brightness(95%) contrast(115%); transform: translateX(-20px);">
+            <button type="submit" class="btn border-0">
+            <img th:src="@{/images/profile.svg}" alt="Logout Icon" style="height: 20px; margin-right: 10px; transform: translateX(-5px);">
             </button>
         </form>
         
