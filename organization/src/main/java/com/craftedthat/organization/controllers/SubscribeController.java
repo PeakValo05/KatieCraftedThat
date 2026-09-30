@@ -16,7 +16,7 @@ public class SubscribeController {
         this.connectRepository = connectRepository;
     }
 
- 
+    // Validate the form input, persist the address, and redirect with toast feedback.
 
     @PostMapping("/subscribe")
     public String subscribe(@RequestParam(value = "email", required = false) String email) {

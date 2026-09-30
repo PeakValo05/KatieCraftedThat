@@ -15,6 +15,8 @@ public class AdminController {
     public AdminController(ConnectRepository connectRepository) {
         this.connectRepository = connectRepository;
     }
+
+    // Supply stored mailing-list subscribers to the dashboard template.
     @GetMapping("/admin/subscribers")
     public String adminDashboard(Model model) {
         model.addAttribute("subscribers", connectRepository.findAll());

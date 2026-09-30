@@ -61,7 +61,7 @@
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 
-		<!-- Database Driver (MySQL in this example) -->
+		<!-- Database drivers for deployment and local development. -->
 		<dependency>
       		<groupId>mysql</groupId>
       		<artifactId>mysql-connector-java</artifactId>

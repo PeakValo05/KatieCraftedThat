@@ -12,6 +12,7 @@ public class SecurityConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .authorizeHttpRequests(authorize -> authorize
+                // Keep the dashboard blocked until admin authentication is implemented.
                         .requestMatchers("/admin/**").denyAll()
                         .anyRequest().permitAll())
                 .formLogin(form -> form.disable())

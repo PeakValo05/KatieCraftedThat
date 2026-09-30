@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
+// JPA entity for mailing-list subscriber records.
 @Entity 
 public class ConnectModel {
 

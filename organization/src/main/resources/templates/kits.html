@@ -18,6 +18,9 @@
             <a class="btn ms-auto border-0" th:href="@{/home}">
                 <img src="/images/home.svg" alt="Home" style="width: 40px; height: 40px; filter: invert(0%);">
             </a>
+            <button class="view-cart-btn" id="open-cart" type="button" aria-haspopup="dialog" aria-controls="cart-panel">
+                View Cart <span class="cart-count" id="cart-count" aria-live="polite">0</span>
+            </button>
        
         </div>
     </header>
@@ -33,14 +36,20 @@
         <!-- Kit categories -->
         <section class="row g-4" aria-label="Kit categories">
             <div class="col-12 col-md-4" th:each="kit : ${kits}">
-                <article class="card kit-card h-100">
+                <article class="card kit-card h-100" th:data-price="${kit.price}">
                     <img class="card-img-top kit-image"
                          th:src="@{/images/{filename}(filename=${kit.image})}"
                          th:alt="${kit.description}">
+
+                                 <button type="button" class="add-item-btn">
+                            Add to Cart
+                                 </button>
                     <div class="card-body">
                         <h2 class="h5 fw-semibold" th:text="${kit.title}">Kit title</h2>
                         <p class="card-text text-secondary mb-0" th:text="${kit.description}">Kit description</p>
+                        <p class="card-text text-primary mb-0" th:text="'$' + ${kit.price} + '.00'">$0.00</p>
                     </div>
+
                 </article>
             </div>
         </section>
@@ -51,13 +60,19 @@
             <h2 class="h3 fw-semibold mb-4">Kits</h2>
             <div class="row g-4">
                 <div class="col-12 col-md-4" th:each="kit : ${moreKits}">
-                    <article class="card kit-card h-100">
+                    <article class="card kit-card h-100" th:data-price="${kit.price}">
                         <img class="card-img-top kit-image"
                              th:src="@{/images/{filename}(filename=${kit.image})}"
                              th:alt="${kit.description}">
+                             
+                        <button type="button" class="add-item-btn">
+                            Add to Cart
+                        </button>
+                             
                         <div class="card-body">
                             <h3 class="h5 fw-semibold" th:text="${kit.title}">Kit title</h3>
                             <p class="card-text text-secondary mb-0" th:text="${kit.description}">Kit description</p>
+                            <p class="card-text text-primary mb-0" th:text="'$' + ${kit.price} + '.00'">$0.00</p>
                         </div>
                     </article>
                 </div>
@@ -65,6 +80,31 @@
         </section>
     </main>
 
+    <!-- Cart backdrop and panel -->
+    <div class="cart-backdrop" id="cart-backdrop" hidden></div>
+    <aside class="cart-panel" id="cart-panel" role="dialog" aria-modal="true" aria-labelledby="cart-title" hidden>
+        <div class="cart-panel-header">
+            <div>
+                <p class="cart-eyebrow">Your selection</p>
+                <h2 id="cart-title">Shopping Cart <span id="panel-cart-count">(0)</span></h2>
+            </div>
+            <button class="cart-close-btn" id="close-cart" type="button" aria-label="Close cart">&times;</button>
+        </div>
+        <p class="cart-empty" id="cart-empty">Your cart is empty.</p>
+        <ul class="cart-items" id="cart-items" aria-live="polite"></ul>
+
+        <!-- Cart total row -->
+        <div class="cart-total-row">
+            <span>Total</span>
+            <strong id="cart-total" aria-live="polite">$0.00</strong>
+        </div>
+        <div class="d-flex justify-content-center">
+            <button class="pay-btn" style="width: 35%; background-color: #007bff; color: white; border-radius: 8px; font-weight: 600; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); border: 0">Checkout</button>
+        </div>
+    </aside>
+
+    <!-- Shared cart state and drawer behavior are used on Home and Kits. -->
+    <script src="/js/cart.js"></script>
 
 </body>
 </html>

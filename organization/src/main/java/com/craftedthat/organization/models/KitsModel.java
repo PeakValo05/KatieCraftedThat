@@ -1,9 +1,12 @@
 package com.craftedthat.organization.models;
+import java.math.BigDecimal;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+// JPA entity containing the fields displayed for a craft kit.
 @Entity
 public class KitsModel {
 
@@ -15,14 +18,16 @@ public class KitsModel {
     private String title;
     private String description;
     private String image;
+    private BigDecimal price;
 
     public KitsModel() {
     }
 
-    public KitsModel(String title, String description, String image) {
+    public KitsModel(String title, String description, String image, BigDecimal price) {
         this.title = title;
         this.description = description;
         this.image = image;
+        this.price = price;
     }
 
     public Long getId() {
@@ -57,5 +62,13 @@ public class KitsModel {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 }
