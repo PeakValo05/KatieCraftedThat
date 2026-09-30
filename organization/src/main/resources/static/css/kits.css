@@ -1,0 +1,31 @@
+        body {
+            background-color: #f8f7f3;
+            color: #292820;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .site-header {
+            background-color: #fff;
+            border-bottom: 1px solid #e8e5dc;
+        }
+
+        .brand-logo {
+            max-width: 190px;
+            max-height: 90px;
+            object-fit: contain;
+        }
+
+        .page-intro {
+            padding: 64px 0 40px;
+        }
+
+        .kit-image {
+            height: 340px;
+            object-fit: cover;
+        }
+
+        .kit-card {
+            border: 1px solid #e8e5dc;
+            border-radius: 6px;
+            overflow: hidden;
+        }

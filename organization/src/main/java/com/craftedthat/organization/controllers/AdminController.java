@@ -3,7 +3,7 @@ package com.craftedthat.organization.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import com.craftedthat.organization.models.ConnectModel;
+
 import com.craftedthat.organization.repository.ConnectRepository;
 
 @Controller

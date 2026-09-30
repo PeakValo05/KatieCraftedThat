@@ -1,47 +1,33 @@
 package com.craftedthat.organization;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
-
-import com.craftedthat.organization.models.RegistrationModel;
-import com.craftedthat.organization.services.RegistrationService;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 
 @SpringBootTest
+@AutoConfigureMockMvc
 class OrganizationApplicationTests {
 
 	@Autowired
-	private AuthenticationConfiguration authenticationConfiguration;
-
-	@Autowired
-	private RegistrationService registrationService;
+	private MockMvc mockMvc;
 
 	@Test
-	void contextLoads() {
+	void storefrontIsPublic() throws Exception {
+		mockMvc.perform(get("/home")).andExpect(status().isOk());
 	}
 
 	@Test
-	void registeredAndAdminUsersCanSignIn() throws Exception {
-		RegistrationModel user = new RegistrationModel();
-		user.setUsername("signin-test-user");
-		user.setPassword("test-password");
-		registrationService.register(user);
-
-		AuthenticationManager authenticationManager =
-				authenticationConfiguration.getAuthenticationManager();
-		var authentication = authenticationManager.authenticate(
-				UsernamePasswordAuthenticationToken.unauthenticated(
-						"signin-test-user", "test-password"));
-		var adminAuthentication = authenticationManager.authenticate(
-				UsernamePasswordAuthenticationToken.unauthenticated(
-						"admin", "admin123!"));
-
-		assertThat(authentication.isAuthenticated()).isTrue();
-		assertThat(adminAuthentication.isAuthenticated()).isTrue();
+	void loginPageIsNotAvailable() throws Exception {
+		mockMvc.perform(get("/login")).andExpect(status().isNotFound());
 	}
 
+	@Test
+	void adminDashboardStaysBlocked() throws Exception {
+		mockMvc.perform(get("/admin/subscribers")).andExpect(status().isForbidden());
+	}
 }

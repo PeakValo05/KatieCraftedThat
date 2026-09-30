@@ -1,13 +1,8 @@
 C:\Users\jwise\Downloads\CraftedThatOrg - Copy\organization\src\main\java\com\craftedthat\organization\config\SecurityConfig.java
 C:\Users\jwise\Downloads\CraftedThatOrg - Copy\organization\src\main\java\com\craftedthat\organization\controllers\AdminController.java
 C:\Users\jwise\Downloads\CraftedThatOrg - Copy\organization\src\main\java\com\craftedthat\organization\controllers\HomeController.java
-C:\Users\jwise\Downloads\CraftedThatOrg - Copy\organization\src\main\java\com\craftedthat\organization\controllers\LoginController.java
-C:\Users\jwise\Downloads\CraftedThatOrg - Copy\organization\src\main\java\com\craftedthat\organization\controllers\RegisterController.java
+C:\Users\jwise\Downloads\CraftedThatOrg - Copy\organization\src\main\java\com\craftedthat\organization\controllers\ProductsController.java
 C:\Users\jwise\Downloads\CraftedThatOrg - Copy\organization\src\main\java\com\craftedthat\organization\controllers\SubscribeController.java
 C:\Users\jwise\Downloads\CraftedThatOrg - Copy\organization\src\main\java\com\craftedthat\organization\models\ConnectModel.java
-C:\Users\jwise\Downloads\CraftedThatOrg - Copy\organization\src\main\java\com\craftedthat\organization\models\RegistrationModel.java
 C:\Users\jwise\Downloads\CraftedThatOrg - Copy\organization\src\main\java\com\craftedthat\organization\OrganizationApplication.java
 C:\Users\jwise\Downloads\CraftedThatOrg - Copy\organization\src\main\java\com\craftedthat\organization\repository\ConnectRepository.java
-C:\Users\jwise\Downloads\CraftedThatOrg - Copy\organization\src\main\java\com\craftedthat\organization\repository\RegistrationRepository.java
-C:\Users\jwise\Downloads\CraftedThatOrg - Copy\organization\src\main\java\com\craftedthat\organization\services\CustomUserDetailsService.java
-C:\Users\jwise\Downloads\CraftedThatOrg - Copy\organization\src\main\java\com\craftedthat\organization\services\RegistrationService.java

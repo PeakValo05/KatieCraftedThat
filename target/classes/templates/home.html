@@ -34,15 +34,10 @@
             <button type="submit" class="btn btn-primary">Search</button>
             <input type="text" name="query" class="form-control d-inline-block" style="width: 200px; margin: 10px;" placeholder="Search...">
         </form>
-        <a href="#" class="btn">
+        <a href="#" class="btn border-0">
             <img th:src="@{/images/cart.svg}" alt="Cart Icon" style="height: 25px; margin-right: 5px;">
         </a>
 
-        <a th:href="@{/login}" class="btn">
-            <img th:src="@{/images/logout.svg}" alt="Logout Icon" style="height: 25px; margin-right: 5px; 
-            filter: invert(16%) sepia(99%) saturate(6500%) hue-rotate(359deg) brightness(95%) contrast(115%); transform: translateX(-20px);">
-        </a>
-        
     </div>
 
 
@@ -58,11 +53,11 @@
         <p>Discover unique machine embroidered items, printables, 
             and digital patterns. Each piece is thoughtfully designed to 
             enhance your gift giving and to bring creativity into your life.</p>
-        <a href="#" class="btn btn-primary">Shop Now</a>
+        <a id="shopButton" href="#products" class="btn btn-primary">Shop Now</a>
     </div>
 </div>
 
-<div class="container mt-5">
+<div id="products" class="container mt-5">
     <div class="row">
         <div class="col text-center">
             <h2>Featured Products</h2>
@@ -76,7 +71,7 @@
     <!-- Kits -->
     <div class="col-auto">
         <div class="card" style="width: 220px; margin: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);">
-            <a href="#">
+            <a th:href="@{/kits}">
                 <img th:src="@{/images/kitsimage.png}" class="card-img-top" alt="Kits">
             </a>
 
@@ -86,7 +81,7 @@
         </div>
     </div>
 
-    <!-- Another Product -->
+    <!-- Machine Embroidery -->
     <div class="col-auto">
         <div class="card" style="width: 220px; margin: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);">
             <a href="#">
@@ -99,6 +94,7 @@
         </div>
     </div>
 
+    <!-- Cross Stitch -->
     <div class="col-auto">
         <div class="card" style="width: 220px; margin: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);">
             <a href="#">
@@ -127,24 +123,24 @@
         
 
 </div> <!-- Close row justify-content-center -->
-
-
 <hr class="w-100 bg-dark">
 
 <div class="row">
     <div class="col text-center">
         <h2 style="font-weight: bold; font-family: poppins, sans-serif;">Stay Connected</h2>
 
-        <form th:action="@{/subscribe}" method="post">
+        <form id="connectForm" th:action="@{/subscribe}" method="post">
 
         <div class="d-flex justify-content-center mt-3" style="padding: 4px;">
             <input type="email"
+                   id="connectEmail"
                    name="email"
                    class="form-control"
                    placeholder="Enter your email"
+                   required
                    style="max-width: 400px;">
 
-            <button class="btn btn-primary ms-2">
+            <button type="submit" class="btn btn-primary ms-2">
                 Connect
             </button>
         </div>
@@ -152,11 +148,68 @@
     </div>
 </div>
 
+<div id="connectToast" class="connect-toast" role="status" aria-live="polite" aria-atomic="true" aria-hidden="true">
+    <span class="connect-toast__icon" aria-hidden="true"></span>
+    <div>
+        <p id="connectToastTitle" class="connect-toast__title"></p>
+        <p id="connectToastMessage" class="connect-toast__message"></p>
+    </div>
+    <button id="closeConnectToast" class="connect-toast__close" type="button" aria-label="Dismiss notification">&times;</button>
+</div>
 
 
 
 
+<!--=== Smooth Scroll Script ===-->
+<script>
+    document.getElementById("shopButton").addEventListener("click", function (event) {
+        event.preventDefault();
+        document.getElementById("products").scrollIntoView({ behavior: "smooth" });
+    });
 
+    const connectToast = document.getElementById("connectToast");
+    const connectEmail = document.getElementById("connectEmail");
+    let connectToastTimeout;
+
+    function hideConnectToast() {
+        connectToast.classList.remove("is-visible");
+        connectToast.setAttribute("aria-hidden", "true");
+        window.clearTimeout(connectToastTimeout);
+    }
+
+    function showConnectToast(state, title, message) {
+        connectToast.dataset.state = state;
+        document.getElementById("connectToastTitle").textContent = title;
+        document.getElementById("connectToastMessage").textContent = message;
+        connectToast.classList.add("is-visible");
+        connectToast.setAttribute("aria-hidden", "false");
+        window.clearTimeout(connectToastTimeout);
+        connectToastTimeout = window.setTimeout(hideConnectToast, 5000);
+    }
+
+    const connectUrl = new URL(window.location.href);
+    if (connectUrl.searchParams.has("connected")) {
+        showConnectToast("success", "You're connected", "Thanks for joining our mailing list.");
+        connectUrl.searchParams.delete("connected");
+    } else if (connectUrl.searchParams.has("connectError")) {
+        showConnectToast("error", "Email required", "Enter your email address to connect.");
+        connectUrl.searchParams.delete("connectError");
+    }
+
+    if (connectUrl.search !== window.location.search) {
+        window.history.replaceState({}, document.title, connectUrl.pathname + connectUrl.search + connectUrl.hash);
+    }
+
+    connectEmail.addEventListener("invalid", function (event) {
+        event.preventDefault();
+        const message = connectEmail.validity.valueMissing
+            ? "Enter your email address to connect."
+            : "Enter a valid email address to connect.";
+        showConnectToast("error", "Check your email", message);
+    });
+
+    document.getElementById("closeConnectToast").addEventListener("click", hideConnectToast);
+</script>
 
 </body>
 </html>

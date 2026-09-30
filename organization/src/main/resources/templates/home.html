@@ -38,13 +38,6 @@
             <img th:src="@{/images/cart.svg}" alt="Cart Icon" style="height: 25px; margin-right: 5px;">
         </a>
 
-        <!-- Logout Form -->
-        <form th:action="@{/logout}" method="post" class="d-inline-block">
-            <button type="submit" class="btn border-0">
-            <img th:src="@{/images/profile.svg}" alt="Logout Icon" style="height: 20px; margin-right: 10px; transform: translateX(-5px);">
-            </button>
-        </form>
-        
     </div>
 
 
@@ -78,7 +71,7 @@
     <!-- Kits -->
     <div class="col-auto">
         <div class="card" style="width: 220px; margin: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);">
-            <a href="#">
+            <a th:href="@{/kits}">
                 <img th:src="@{/images/kitsimage.png}" class="card-img-top" alt="Kits">
             </a>
 

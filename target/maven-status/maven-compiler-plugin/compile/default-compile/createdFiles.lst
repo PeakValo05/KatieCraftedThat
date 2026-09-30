@@ -1,13 +1,8 @@
+com\craftedthat\organization\controllers\SubscribeController.class
+com\craftedthat\organization\controllers\ProductsController.class
 com\craftedthat\organization\config\SecurityConfig.class
 com\craftedthat\organization\controllers\HomeController.class
 com\craftedthat\organization\OrganizationApplication.class
-com\craftedthat\organization\controllers\RegisterController.class
-com\craftedthat\organization\services\RegistrationService.class
-com\craftedthat\organization\controllers\AdminController.class
-com\craftedthat\organization\controllers\SubscribeController.class
-com\craftedthat\organization\repository\RegistrationRepository.class
-com\craftedthat\organization\services\CustomUserDetailsService.class
 com\craftedthat\organization\repository\ConnectRepository.class
-com\craftedthat\organization\models\RegistrationModel.class
-com\craftedthat\organization\controllers\LoginController.class
+com\craftedthat\organization\controllers\AdminController.class
 com\craftedthat\organization\models\ConnectModel.class
